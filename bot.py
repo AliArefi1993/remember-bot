@@ -126,15 +126,18 @@ async def run_bot():
 
 import asyncio
 
+
+async def main():
+    try:
+        await run_bot()
+    except Exception as e:
+        print(f"Unhandled error: {e}")
+
 if __name__ == "__main__":
     try:
-        loop = asyncio.get_event_loop()
-        loop.create_task(run_bot())
-        loop.run_forever()
+        asyncio.run(main())
     except (KeyboardInterrupt, SystemExit):
         print("Bot stopped.")
-
-
 
 #if __name__ == "__main__":
 #    import asyncio
