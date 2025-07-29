@@ -124,10 +124,22 @@ async def run_bot():
     app.add_handler(MessageHandler(filters.TEXT & filters.Regex(r".*[\?|؟]$"), reply_if_question))
     await app.run_polling()
 
+import asyncio
+
 if __name__ == "__main__":
-    import asyncio
-    import nest_asyncio
+    try:
+        loop = asyncio.get_event_loop()
+        loop.create_task(run_bot())
+        loop.run_forever()
+    except (KeyboardInterrupt, SystemExit):
+        print("Bot stopped.")
 
 
-    nest_asyncio.apply()
-    asyncio.run(run_bot())
+
+#if __name__ == "__main__":
+#    import asyncio
+#    import nest_asyncio
+
+
+#    nest_asyncio.apply()
+ #   asyncio.run(run_bot())
