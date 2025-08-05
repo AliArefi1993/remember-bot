@@ -100,17 +100,6 @@ async def recall(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         await update.message.reply_text("I don’t have anything saved for you yet.")
 
-# How to access and manage your data:
-# - All user memories are now stored in a PostgreSQL table 'memories'.
-# - You can access them with SQL, for example:
-#     SELECT * FROM memories WHERE user_id = '123456';
-#     DELETE FROM memories WHERE user_id = '123456';
-    
-
-
-import time
-import sys
-import asyncio
 
 async def run_bot():
     await init_db()
@@ -124,25 +113,9 @@ async def run_bot():
     app.add_handler(MessageHandler(filters.TEXT & filters.Regex(r".*[\?|؟]$"), reply_if_question))
     await app.run_polling()
 
-import asyncio
-
-
-async def main():
-    try:
-        await run_bot()
-    except Exception as e:
-        print(f"Unhandled error: {e}")
 
 if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except (KeyboardInterrupt, SystemExit):
-        print("Bot stopped.")
-
-#if __name__ == "__main__":
-#    import asyncio
-#    import nest_asyncio
-
-
-#    nest_asyncio.apply()
- #   asyncio.run(run_bot())
+   import asyncio
+   import nest_asyncio
+   nest_asyncio.apply()
+   asyncio.run(run_bot())
